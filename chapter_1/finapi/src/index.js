@@ -5,6 +5,8 @@ const app = express();
 
 const customers = [];
 
+app.use(express.json());
+
 // Middleware
 function verifyIfExistsAccountCPF(request, response, next) {
   const { cpf } = request.headers;
@@ -31,8 +33,6 @@ function getBalance(statement) {
 
   return balance;
 }
-
-app.use(express.json());
 
 app.post("/account", (request, response) => {
   const { cpf, name } = request.body;
